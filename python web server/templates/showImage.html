@@ -6,10 +6,7 @@
     <title>Cam Monitor</title>
 </head>
 <body>
-   <h1>Welcome to Cam Monitor</h1>
+   <h1>Last camera image</h1>
+   <img id="picture" src="data:image/png;base64,{{ camera_image }}">
 </body>
-<form action="showImage" method = "POST">
-    <p>Field1 <input type = "text" name = "Camera_Id" /></p>
-    <p><input type = "submit" value = "submit" /></p>
-</form>
 </html>
