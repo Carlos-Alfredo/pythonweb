@@ -47,10 +47,8 @@ def showImage():
 		data = request.form
 		session['Camera_Id']=data['Camera_Id']
 		results = users.find({'cameraId':session['Camera_Id']}).limit(1).sort('timestamp',-1)
-		print(results)
 		for x in results:
 			image=x
-		print(image)
 		img_buffer=io.BytesIO(image['data'])
 		img_buffer.seek(0)
 		image_memory = base64.b64encode(img_buffer.getvalue())
