@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect
 import io
+import os
 import json
 import logging
 from pymongo import MongoClient
@@ -8,7 +9,10 @@ import boto3
 
 def get_mongoIP():
 	client=boto3.client('ec2',
-	region_name= "us-east-1")
+	region_name= "us-east-1",
+	aws_access_key_id=os.environ.get('aws_access_key_id'),
+	aws_secret_access_key=os.environ.get('aws_secret_access_key')
+	)
 	reservations = client.describe_instances(InstanceIds=['i-00e60cdceba35d872']).get("Reservations")
 	for reservation in reservations:
 		for instance in reservation['Instances']:
