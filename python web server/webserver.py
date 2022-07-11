@@ -8,9 +8,7 @@ import boto3
 
 def get_mongoIP():
 	client=boto3.client('ec2',
-	region_name= "us-east-1",
-    aws_access_key_id="AKIAV5MQB4Y6QUV5XP6W",
-    aws_secret_access_key="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")
+	region_name= "us-east-1")
 	reservations = client.describe_instances(InstanceIds=['i-00e60cdceba35d872']).get("Reservations")
 	for reservation in reservations:
 		for instance in reservation['Instances']:
