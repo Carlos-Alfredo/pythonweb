@@ -72,7 +72,9 @@ def redirectIndex2():
 
 @app.route('/updateImage/')
 def updateImage():
-	image = users.find({'cameraId':session['Camera_Id']}).limit(1).sort('timestamp',-1)
+	results = users.find({'cameraId':session['Camera_Id']}).limit(1).sort('timestamp',-1)
+	for x in results:
+		image=x
 	img_buffer=io.BytesIO(image['data'])
 	img_buffer.seek(0)
 	image_memory = base64.b64encode(img_buffer.getvalue())
